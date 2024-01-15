@@ -1,0 +1,6 @@
+.hintrc
+
+/node_modules
+.env
+
+NOTES.txt
