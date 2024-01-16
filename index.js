@@ -8,13 +8,10 @@ import { corsOptions } from './config/corsOptions.js';
 import { dbConnect } from './config/dbConnect.js';
 import { credentials } from './middlewares/credentials.js';
 import { errorHandler, notFound } from './middlewares/errorMiddleware.js';
+import { verifyJWT } from './middlewares/verifyJWT.js';
 import userRoutes from './routes/userRoutes.js';
 
 const app = express();
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
 
 app.listen(process.env.EXPRESS_PORT, () =>
   console.log(yellow(`Server running on port ${process.env.EXPRESS_PORT}`)));

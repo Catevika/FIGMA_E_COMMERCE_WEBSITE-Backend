@@ -11,7 +11,7 @@ export const verifyJWT = (req, res, next) => {
     (err, decoded) => {
       if (err) return res.sendStatus(403); //invalid token
       req.username = decoded.username;
-      req.id = decoded.id;
+      req.password = decoded.password;
       next();
     }
   );
