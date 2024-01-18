@@ -7,15 +7,15 @@ export const logoutUser = async (req, res) => {
   const refreshToken = cookies.jwt;
 
   // Is refreshToken in db?
-  const user = await User.findOne({ refreshToken });
-  if (!user) {
+  const foundUser = await User.findOne({ refreshToken }).exec();
+  if (!foundUser) {
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     res.status(204).json('User logged out successfully');
   }
 
   // Delete refreshToken in db
-  user.refreshToken = user.refreshToken.filter(rt => rt !== refreshToken);;
-  const result = await user.save();
+  foundUser.refreshToken = foundUser.refreshToken.filter(rt => rt !== refreshToken);;
+  const result = await foundUser.save();
   console.log(result);
 
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });

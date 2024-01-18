@@ -2,7 +2,7 @@ import ash from 'express-async-handler';
 import User from '../models/userModel.js';
 
 export const getAllUsers = ash(async (req, res) => {
-  const users = await User.find();
+  const users = await User.find().exec();
   if (!users) return res.status(204).json({ 'message': 'No users found' });
   res.json(users);
 });
@@ -13,7 +13,7 @@ export const deleteUser = ash(async (req, res) => {
   if (!user) {
     return res.status(204).json({ 'message': `User ID ${req.body.id} not found` });
   }
-  const result = await user.deleteOne({ _id: req.body.id });
+  const result = await user.deleteOne({ _id: req.body.id }).exec();
   res.json(result);
 });
 

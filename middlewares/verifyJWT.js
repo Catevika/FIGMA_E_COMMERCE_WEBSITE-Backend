@@ -10,8 +10,7 @@ export const verifyJWT = (req, res, next) => {
     process.env.ACCESS_TOKEN_KEY,
     (err, decoded) => {
       if (err) return res.sendStatus(403); //invalid token
-      req.username = decoded.username;
-      req.password = decoded.password;
+      req.user = decoded.UserInfo.username;
       next();
     }
   );

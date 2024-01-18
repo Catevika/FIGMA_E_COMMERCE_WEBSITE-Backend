@@ -6,20 +6,18 @@ import User from '../models/userModel.js';
 export const loginUser = async (req, res) => {
   const cookies = req.cookies;
 
-  const { username, password } = req.body;
-  if (!username || !password) return res.status(400).json('Username and password are required.');
+  if (!req.body.username || !req.body.password) return res.status(400).json('Username and password are required.');
 
-  const foundUser = await User.findOne({ username });
+  const foundUser = await User.findOne({ username: req.body.username }).exec();
 
   if (foundUser) {
-    const match = await bcrypt.compare(password, foundUser.password);
+    const match = await bcrypt.compare(req.body.password, foundUser.password);
 
     if (match) {
       // create JWTs
       const accessToken = jwt.sign({
-        "userInfo": {
-          "username": foundUser.username,
-          "password": foundUser.password
+        'userInfo': {
+          'username': foundUser.username,
         }
       },
         process.env.ACCESS_TOKEN_KEY,
@@ -27,15 +25,12 @@ export const loginUser = async (req, res) => {
       );
 
       const newRefreshToken = jwt.sign(
-        {
-          "userInfo": {
-            "username": foundUser.username
-          }
-        },
+        { 'username': foundUser.username },
         process.env.REFRESH_TOKEN_KEY,
         { expiresIn: '15s' }
       );
 
+      // Changed to let keyword
       let newRefreshTokenArray =
         !cookies?.jwt
           ? foundUser.refreshToken
@@ -44,13 +39,13 @@ export const loginUser = async (req, res) => {
       if (cookies?.jwt) {
 
         /*
-        Scenario added here:
+        Scenario:
             1) User logs in but never uses RT and does not logout
             2) RT is stolen
             3) If 1 & 2, reuse detection is needed to clear all RTs when user logs in
         */
         const refreshToken = cookies.jwt;
-        const foundToken = await User.findOne({ refreshToken });
+        const foundToken = await User.findOne({ refreshToken }).exec();
 
         // Detected refresh token reuse!
         if (!foundToken) {
@@ -71,9 +66,9 @@ export const loginUser = async (req, res) => {
       // Send authorization roles and access token to user
       res.json({ accessToken });
     } else {
-      res.status(401).json('Wrong password');
+      res.status(401).json('Not authorized');
     }
   } else {
-    res.status(204).json('User not found');
+    res.status(204).json('No user found');
   }
 };
