@@ -12,7 +12,7 @@ import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 
-app.listen(process.env.EXPRESS_PORT, () =>
+app.listen(process.env.EXPRESS_PORT || 5000, () =>
   console.log(yellow(`Server running on port ${process.env.EXPRESS_PORT}`)));
 
 dbConnect();
@@ -38,7 +38,7 @@ app.use('/', userRoutes);
 app.use(verifyJWT);
 
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('combined'));
+  app.use(morgan('dev'));
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'production') {
   );
 };
 
-process.on('uncaughtException', function (err) {
-  console.log(err);
+process.on('uncaughtException', (error) => {
+  console.log(error);
 });
 

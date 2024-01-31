@@ -3,19 +3,20 @@ import mongoose from 'mongoose';
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: [ true, 'Name is required' ]
   },
   username: {
     type: String,
-    required: true
+    required: [ true, 'Username is required' ],
+    unique: [ true, 'This username already exists, make sure it is unique' ]
   },
   email: {
     type: String,
-    required: true
+    required: [ true, 'Email is required' ],
   },
   password: {
     type: String,
-    required: true
+    required: [ true, 'Password is required' ],
   },
   refreshToken: [ String ]
 },

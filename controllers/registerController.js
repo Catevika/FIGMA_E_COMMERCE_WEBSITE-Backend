@@ -19,7 +19,6 @@ export const registerUser = async (req, res) => {
 
     //create and store the new user
     const newUser = await User.create({ name, username, email, password: hashedPassword });
-
     console.log({ 'newUser': newUser });
 
     res.status(201).json({ 'success': `New user ${username} created!` });
