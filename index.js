@@ -39,7 +39,16 @@ app.use(express.json());
 //middleware for cookies
 app.use(cookieParser());
 
+app.get("/health", (req, res) => {
+	res.status(200).json({ status: "ok" });
+});
+
+app.get("/", (req, res) => {
+	res.status(200).json({ status: "ok", service: "backend" });
+});
+
 app.use("/", userRoutes);
+app.use("/api", userRoutes);
 
 app.use(verifyJWT);
 
