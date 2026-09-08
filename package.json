@@ -1,32 +1,32 @@
 {
-  "name": "figma_e_commerce_website-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node index.js",
-    "server": "node --watch index.js",
-    "client": "npm run dev --prefix ../FIGMA_E_COMMERCE_WEBSITE-Client",
-    "dev": "concurrently \"npm start\" \"npm run client\""
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.9.4"
-  },
-  "devDependencies": {
-    "concurrently": "^10.0.5",
-    "console-log-colors": "^0.5.0",
-    "morgan": "^1.12.0"
-  },
-  "allowScripts": {
-    "bcrypt@6.0.0": true
-  }
+	"name": "figma_e_commerce_website-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index.js",
+		"server": "node --watch index.js",
+		"client": "npm run dev --prefix ../FIGMA_E_COMMERCE_WEBSITE-Client",
+		"dev": "concurrently \"npm start\" \"npm run client\""
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^6.0.0",
+		"cookie-parser": "^1.4.7",
+		"cors": "^2.8.6",
+		"dotenv": "^17.4.2",
+		"express": "^5.2.1",
+		"jsonwebtoken": "^9.0.3",
+		"mongoose": "^9.9.5"
+	},
+	"devDependencies": {
+		"concurrently": "^10.0.5",
+		"console-log-colors": "^0.5.0",
+		"morgan": "^1.12.0"
+	},
+	"allowScripts": {
+		"bcrypt@6.0.0": true
+	}
 }
