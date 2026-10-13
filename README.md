@@ -1,6 +1,6 @@
 # 3legant E-Commerce - Backend
 
-The REST API for the 3legant e-commerce application. It is built with Node.js, Express, and MongoDB using Mongoose, and provides account management and cookie-based authentication for the [frontend](../FIGMA_E_COMMERCE_WEBSITE-Client).
+The REST API for the 3legant e-commerce application. It is built with Node.js, Express, and MongoDB using Mongoose, and provides account management and cookie-based authentication for the [frontend](https://github.com/Catevika/FIGMA_E_COMMERCE_WEBSITE-Client).
 
 ## Features
 
