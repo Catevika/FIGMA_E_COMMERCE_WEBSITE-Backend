@@ -21,8 +21,6 @@ if (!process.env.VERCEL) {
 	);
 }
 
-await dbConnect();
-
 mongoose.connection.on("connected", () => {
 	console.log(cyan("MongoDB connected successfully"));
 });
@@ -45,6 +43,16 @@ app.get("/health", (req, res) => {
 
 app.get("/", (req, res) => {
 	res.status(200).json({ status: "ok", service: "backend" });
+});
+
+app.use(async (req, res, next) => {
+	try {
+		await dbConnect();
+		next();
+	} catch (error) {
+		console.error("MongoDB connection failed:", error);
+		res.status(503).json({ message: "Database unavailable" });
+	}
 });
 
 app.use("/", userRoutes);

@@ -63,6 +63,8 @@ This starts the API with Node's watch mode. The server listens on `http://localh
 
 For the complete local application, start the frontend in a second terminal with `npm run dev` from the Client directory. Its Vite configuration forwards `/api` requests to this server.
 
+For Vercel, add `MONGO_URI`, `ACCESS_TOKEN_KEY`, and `REFRESH_TOKEN_KEY` under the backend project's **Settings → Environment Variables**, then redeploy. CORS preflight and `/health` requests do not require a database connection; API routes connect to MongoDB on demand and return `503` if the database is unavailable.
+
 ## Available scripts
 
 | Command          | Description                               |
