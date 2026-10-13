@@ -93,4 +93,4 @@ Routes are mounted at both the root path and under `/api`. The frontend uses the
 
 ## Related project
 
-See the [frontend README](../FIGMA_E_COMMERCE_WEBSITE-Client/README.md) for storefront features, pages, and frontend development commands.
+See the [frontend README](https://github.com/Catevika/FIGMA_E_COMMERCE_WEBSITE-Client) for storefront features, pages, and frontend development commands.
